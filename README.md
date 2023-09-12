@@ -39,7 +39,7 @@ To run this app, you need to have the following installed:
 
 ## Run the application
 
-1. Run the app.py script to start the Flask application.
+1. Run the main.py script to start the Flask application.
 2. Navigate to http://localhost:5000/signup in a web browser to access the signup page.
 3. Fill out the required information on the "Sign Up" page and click the "Submit" button.
 4. After successfully creating an account, you will be redirected to the "Log In" page. Log in with your new account credentials.
