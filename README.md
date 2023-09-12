@@ -30,11 +30,11 @@ To run this app, you need to have the following installed:
 
 ## Installation
 
-1. Download the project file.
+To run the app flawlessly, satisfy the requirements
 
-2. Navigate to the project directory: $ cd ca1website
-
-3. Install the required packages: $ pip install -r requirements.txt
+```bash
+$ pip install -r requirements.txt
+```
 
 
 ## Run the application
