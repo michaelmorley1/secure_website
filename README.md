@@ -54,7 +54,7 @@ To run this app, you need to have the following installed:
 
 The following files are included in this application:
 
-- app.py: The main Flask application file.
+- main.py: The main Flask application file.
 - templates/: Contains all the HTML templates used in the application.
 - static/: Contains all the static files (CSS, and images) used in the application.
 - requirements.txt: Contains the list of required packages for the application.
