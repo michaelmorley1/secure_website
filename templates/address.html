@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address</title>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/homepage">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <!--Form for collecting users address information-->
+    <form action="/address" method="post">
+        <h2>Address Information</h2>
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+        <label for="city">Town:</label>
+        <input type="text" id="city" name="city" required><br><br>
+        <label for="state">County:</label>
+        <input type="text" id="state" name="state" required><br><br>
+        <label for="zip">Post Code:</label>
+        <input type="text" id="zip" name="zip" required><br><br>
+        <!--This is a hidden field for the CSRF token-->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <!--Submit button-->
+        <input type="submit" value="Submit">
+    </form>
+</main>
+</body>
+<!--This is a footer which displays copyright information-->
+<footer>
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>

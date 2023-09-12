@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/homepage">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<!--Address details of user are prepopulated here-->
+<main>
+    <h1>Here is your saved address details</h1>
+    <p>Address: {{ address|e }}</p>
+    <p>Town: {{ city|e }}</p>
+    <p>County: {{ state|e }}</p>
+    <p>Post Code: {{ zip|e }}</p>
+
+</main>
+</body>
+<!--This is a footer which displays copyright information-->
+<footer>
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>

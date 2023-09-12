@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Website</title>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/homepage">Home</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <!-- Check for flashed messages and display them if present -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <h1>Sign Up</h1>
+    <!-- Creates a form to submit user information to the server to signup -->
+    <form action="/signupAction" method="post">
+        <label for="username">Username:</label> <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label> <input type="password" id="password" name="password"><br>
+
+        <label for="email">Email:</label> <input type="text" id="email" name="email"><br>
+        <label for="fname">First Name:</label> <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last Name:</label> <input type="text" id="lname" name="lname"><br>
+
+        Select your gender (you can only select one value):<br>
+        <input type="radio" id="male" name="gender" value="Male" checked="checked">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br>
+
+        <!-- Checkbox options for book genres -->
+        <label>What are your preferred genres? (you can select multiple genres):</label><br>
+        <input type="checkbox" id="fiction" name="selected_fiction" value="fiction">
+        <label for="fiction">Fiction</label><br>
+        <input type="checkbox" id="non-fiction" name="selected_non_fiction" value="non-fiction">
+        <label for="non-fiction">Non-Fiction</label><br>
+        <input type="checkbox" id="horror" name="selected_horror" value="horror">
+        <label for="horror">Horror</label><br>
+        <input type="checkbox" id="romance" name="selected_romance" value="romance">
+        <label for="romance">Romance</label><br>
+        <input type="checkbox" id="children" name="selected_children" value="children">
+        <label for="children">Children</label><br>
+        <input type="checkbox" id="mystery" name="selected_mystery" value="mystery">
+        <label for="mystery">Mystery</label><br>
+        <input type="checkbox" id="cooking" name="cooking" value="cooking">
+        <label for="cooking">Cooking</label><br>
+        <input type="checkbox" id="sport" name="sport" value="sport">
+        <label for="sport">Sport</label><br>
+        <br>
+        <!-- Checkbox for agreeing terms and conditions -->
+        <label for="terms-conditions">
+            <input type="checkbox" id="terms-conditions" name="terms" required>
+            I agree to the <a target="_blank" rel="noopener" href="/terms-conditions"> terms and conditions</a>
+        </label>
+        <br>
+        <br>
+        <!--This is a hidden field for the CSRF token-->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <!--Submit button-->
+        <input type="submit" value="Register">
+    </form>
+    <br>
+    <br>
+    Already have an account? <a href="/login">Login</a>
+    </section>
+</main>
+</body>
+<!--This is a footer which displays copyright information-->
+<footer>
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>

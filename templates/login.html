@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Google reCAPTCHA API-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/homepage">Home</a></li>
+        </ul>
+    </nav>
+</header>
+<div>
+    <main>
+        <!-- Check for flashed messages and display them if present -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <!-- Create a login form with input fields for username, password, and reCAPTCHA -->
+        <h1>Login</h1>
+        <form action="/loginAction" method="post">
+            <label for="username">Username:</label> <input type="text" id="username" name="username" required><br>
+            <label for="password">Password:</label> <input type="password" id="password" name="password" required><br>
+            <br>
+            <!-- reCAPTCHA class and sitekey -->
+            <div class="g-recaptcha" data-sitekey="6Ldc9xElAAAAAJTRZXRpWwiTJnN0Yn7PzxKNoU0O"></div>
+            <br>
+            <!--This is a hidden field for the CSRF token-->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <input type="submit" value="Login" onclick="return onSubmit();">
+            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" required>
+        </form>
+        <br>
+        <a href="/signup">Create an account</a>
+    </main>
+</div>
+<!--Javascript code to make reCAPTCHA a required field-->
+<script>
+window.onload = function() {
+let $recaptcha = document.querySelector('#g-recaptcha-response');
+
+if($recaptcha) {
+$recaptcha.setAttribute("required", "required");
+}
+};
+</script>
+</body>
+<!--This is a footer which displays copyright information-->
+<footer>
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>

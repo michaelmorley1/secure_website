@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reserve Book</title>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/homepage">Home</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<div>
+    <main>
+        <h1>Confirm Reservation</h1>
+        <p>Are you sure you want to reserve the following book?</p>
+        <ul>
+            <li><strong>Title:</strong> {{ title|e }}</li>
+        </ul>
+        <!-- Form to confirm the book reservation. -->
+        <form action="/confirm-reservation" method="post">
+            <!-- Hidden input fields to submit the book title and CSRF token with the form. -->
+            <input type="hidden" name="title" value="{{ title|e }}">
+            <!--This is a hidden field for the CSRF token-->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <!-- Submit button -->
+            <button type="submit">Confirm Reservation</button>
+        </form>
+    </main>
+</div>
+</body>
+<footer>
+    <!--This is a footer which displays copyright information-->
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>

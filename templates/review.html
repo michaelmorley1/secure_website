@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Review Page</title>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/homepage">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<div>
+    <main>
+        <h1>Book Review</h1>
+        <p>Type in your review for the book you have selected</p>
+        <!-- Book title displayed as a subheading-->
+        <h2>{{book_title|e}}</h2>
+        <!--Form to submit a book review.-->
+        <form method="POST">
+            <label for="title">Title:</label>
+            <input type="hidden" name="title" value="{{ book_title|e }}">
+            <input type="text" id="title" name="title" required value="{{ book_title|e }}" readonly>
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" required>{{ review|e }}</textarea>
+            <!--This is a hidden field for the CSRF token-->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <!--Submit button-->
+            <input type="submit" value="Submit Review">
+        </form>
+    </main>
+</div>
+</body>
+<!--This is a footer which displays copyright information-->
+<footer>
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>

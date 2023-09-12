@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/homepage">Home</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<div>
+    <main>
+        <!-- Check for flashed messages and display them if present -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <!--Table populates users details-->
+        <h1>User Profile: {{ username|e }}</h1>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <td>{{ fname|e }}</td>
+            </tr>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>{{ lname|e }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ email|e }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>
+                    {%if gender=='Male' -%}
+                    <img src="{{url_for('static', filename='male.png')}}" width="50" height="50"/>
+                    {%else -%}
+                    <img src="{{url_for('static', filename='female.png')}}" width="50" height="50"/>
+                    {%endif%}
+
+                </td>
+            </tr>
+            <tr>
+                <th>Preferred Genre</th>
+                <td>
+                    <ul>
+                        {%for genre in genre %}
+                        <li>{{ genre|e }}</li>
+                        {%endfor%}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <section>
+            <h1>Important Update</h1>
+            <p>You have asked and we have listened! We are currently looking to roll out a delivery service in the next
+                few months that will enable you reserve and get books sent to your home. As part of this process we have
+                included a new section for you to provide your address information if you wish. You can enter in your
+                details
+                below by clicking on the 'Enter Address Information' button and filling out the relevant fields. You
+                will then
+                be able to see your saved address information by clicking on 'View Address Information'.</p>
+        </section>
+        <br>
+        <br>
+        <!--Enter address information here-->
+        <a href="/address">Enter Address Information</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!--Read address information here-->
+        <a href="/delivery_payment">View Address Information</a>
+        <!--This is a hidden field for the CSRF token-->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    </main>
+</div>
+</body>
+<!--This is a footer which displays copyright information-->
+<footer>
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>

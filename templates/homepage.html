@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- Check for flashed messages and display them if present -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<br>
+<main>
+    <!--Introduction text-->
+    <section>
+        <h1>Welcome to Tooreen Library</h1>
+        <p>We're thrilled to have you here. As a member of our community, once you sign up you can start
+            reserving books for pickup. Our online catalog makes it easy to search for books that are currently
+            available and place a hold on them. So come explore our collection of books - we're sure you'll find
+            something you love!</p>
+    </section>
+    <!--List of top 10 books that are requested currently-->
+    <div class="top10">
+        <h2>Top 10 Requested Books:</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Where the Crawdads Sing</td>
+                <td>Delia Owens</td>
+                <td>Fiction</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>The Thursday Murder Club</td>
+                <td>Richard Osman</td>
+                <td>Mystery</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Atomic Habits</td>
+                <td>James Clear</td>
+                <td>Non-Fiction</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>The Silent Patient</td>
+                <td>Alex Michaelides</td>
+                <td>Mystery</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>The Boy, the Mole, the Fox and the Horse</td>
+                <td>Charlie Mackesy</td>
+                <td>Fiction</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Becoming</td>
+                <td>Michelle Obama</td>
+                <td>Non-Fiction</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>The Alchemist</td>
+                <td>Paulo Coelho</td>
+                <td>Fiction</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>The Book of Dust: The Secret Commonwealth</td>
+                <td>Philip Pullman</td>
+                <td>Fiction</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>The Beekeeper of Aleppo</td>
+                <td>Christy Lefteri</td>
+                <td>Fiction</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Girl, Woman, Other</td>
+                <td>Bernardine Evaristo</td>
+                <td>Fiction</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+<!--This is a footer which displays copyright information-->
+<footer>
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Books</title>
+    <!--Importing of CSS stylesheet.-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<header>
+    <!--Navigation bar with logo and options to select-->
+    <nav>
+        <ul>
+            <img src="{{url_for('static', filename='log.png')}}" class="logo" width="120" height="120"/>
+            <li><a href="/homepage">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Search Books</h1>
+    <form action="/search" method="post">
+        <label for="search_input">Search for a Book:</label>
+        <!--Input field for searching books-->
+        <input type="text" id="search_input" name="q">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <button type="submit">Search</button>
+    </form>
+    <hr>
+    <h2>Search Results</h2>
+    <!--Displaying the search query entered-->
+    <p>Showing results for: <strong>{{ query|e }}</strong></p>
+    <ul>
+        {% for result in data %}
+        <li class="book-card">
+            <!--Displaying book details-->
+            <strong>Title:</strong> {{ result[1]|e }}<br>
+            <strong>Author:</strong> {{ result[2]|e }}<br>
+            <strong>Genre:</strong> {{ result[3]|e }}<br>
+            <strong>Latest Book Review:</strong> {{ result[4]|e }}<br>
+            <!--Adding options to add review or reserve book-->
+            <a href="/review?title={{ result[1] }}">Add Review</a><br>
+            <a href="/reserved?title={{ result[1] }}">Reserve Book</a><br>
+        </li>
+        {% else %}
+        <!--Message displayed if book is not in stock-->
+        <li>This book is not in stock.</li>
+        {% endfor %}
+    </ul>
+</main>
+</body>
+<!--This is a footer which displays copyright information-->
+<footer>
+    <p>&copy; 2023 Michael's Website</p>
+</footer>
+</html>
