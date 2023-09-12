@@ -1,20 +1,24 @@
 
 # Building a Secure Website
 
-#### By Michael Morley
 
-#### Description
+## Description
+
 This is a Flask application that demonstrates a basic login system for a local community library that has been built with
 sufficient security measures put in place.
 
-##Technologies Used 
+<img src="https://i.imgur.com/3NGERXD.png" alt="Library - Flask" width="600">
+
+## Technologies Used 
+
 The application has been built using:
  - Python
  - HTML 
  - Javascript
  - SQLite database.
 
-##Requirements
+## Requirements
+
 To run this app, you need to have the following installed:
 
 - Python 3.5+
@@ -24,7 +28,7 @@ To run this app, you need to have the following installed:
 - Flask-Login
 - SQLite3
 
-##Installation
+## Installation
 
 1. Download the project file.
 
@@ -46,16 +50,16 @@ To run this app, you need to have the following installed:
 10. To log out, click the "Log Out" button on the navigation bar.
 
 
-##File structure
+## File structure
 
 The following files are included in this application:
 
-app.py: The main Flask application file.
-templates/: Contains all the HTML templates used in the application.
-static/: Contains all the static files (CSS, and images) used in the application.
-requirements.txt: Contains the list of required packages for the application.
-README.txt: The readme file you are currently reading.
+- app.py: The main Flask application file.
+- templates/: Contains all the HTML templates used in the application.
+- static/: Contains all the static files (CSS, and images) used in the application.
+- requirements.txt: Contains the list of required packages for the application.
+- README.txt: The readme file you are currently reading.
 
 
-Contributing
+## Contributing
 Contributions are welcome, if you find a bug, feel free to submit an issue.
